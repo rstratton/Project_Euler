@@ -1,0 +1,26 @@
+public class Ep3{
+	static long testNum = 600851475143l;
+
+	static boolean isPrime(long num){
+		for(long i = 2; i < num; i++){
+			if(num % i == 0)
+				return false;
+		}
+		return true;
+	}
+
+	static long largestPrimeFactor(long num){
+		long largest = 0;
+		for(long i = 2; i <= num; ++i){
+			if(isPrime(i))
+				if(num % i = 0)
+					largest = i;
+		}
+		return largest;
+	}
+
+	public static void main(String[] args){
+		System.out.println(largestPrimeFactor(testNum));
+		
+	}
+}
