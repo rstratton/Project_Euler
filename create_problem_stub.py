@@ -2,7 +2,7 @@ import os
 
 problem_number = str(input("Enter problem number: ")).zfill(3)
 
-dirname = "pe" + problem_number
+dirname = "prob_" + problem_number
 filename = dirname + ".py"
 
 if not os.path.exists(dirname):
