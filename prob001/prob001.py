@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 
 """
-==========================
-Project Euler - Problem 1
-==========================
-Problem: Find the sum of all the multiples of 3 or 5 below 1000.
+===========================
+Project Euler - Problem 001
+---------------------------
+Description: Find the sum of all the multiples of 3 or 5 below 1000.
+===========================
 """
 
 def solution1():
@@ -22,3 +23,6 @@ def solution2():
         if n % 3 == 0 or n % 5 == 0:
             total += n
     return total
+
+print(solution1())
+print(solution2())
