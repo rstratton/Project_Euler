@@ -2,10 +2,9 @@
 import os
 
 problem_number = str(input("Enter problem number: ")).zfill(3)
-file_extension = str(input("Enter file extension: "))
 
 dirname = "prob" + problem_number
-filename = dirname + "." + file_extension
+filename = dirname + ".py"
 
 if not os.path.exists(dirname):
     os.makedirs(dirname)
