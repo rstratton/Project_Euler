@@ -1,2 +1,4 @@
 *.class
 *.run
+*.o
+*.hi
