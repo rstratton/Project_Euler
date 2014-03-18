@@ -1,4 +1,4 @@
-public class ep015{
+public class Prob015 {
 	static final int GRID_SIZE = 21;
 	static boolean[][] grid = new boolean[GRID_SIZE][GRID_SIZE];	//'true' indicates that node hasn't been travelled.
 	static long pathCount = 0;

@@ -1,4 +1,4 @@
-public class ep017{
+public class Prob017 {
 	static long sum = 0l;
 	public static void main(String[] args){
 		for(int i = 1; i < 1001; ++i){

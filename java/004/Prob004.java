@@ -1,6 +1,6 @@
 
 
-public class ep4{
+public class Prob004 {
 	
 	static boolean isPalindrome(Long num){
 		String digits = num.toString();

@@ -2,7 +2,7 @@
 // a + b + c = 1000
 // find a*b*c;
 
-public class ep9{
+public class Prob009 {
 	static int a = 0;
 	static int b = 0;
 	static int c = 0;

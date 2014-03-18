@@ -1,7 +1,7 @@
 /*Find the difference between the sum of the squares of the first one hundred 
 natural numbers and the square of the sum.*/
 
-public class ep6{	
+public class Prob006 {	
 	static long computeSumOfSquares(){
 		long sumOfSquares = 0l;
 		for(long i = 1l; i < 101l; ++i){

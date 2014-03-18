@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 
-public class EP3_1{
+public class Prob003 {
 	static Long testNum = 600851475143l;
 	
 	static void factorize(long num, ArrayList<Long> factors){

@@ -1,10 +1,10 @@
 import java.math.BigInteger;
 
-public class ep16{
+public class Prob020 {
 	public static void main(String[] args){
-		BigInteger number = new BigInteger("2");
-		for(int i = 2; i < 1001; ++i){
-			number = number.multiply(new BigInteger("2"));
+		BigInteger number = new BigInteger("100");
+		for(int i = 99; i > 0; --i){
+			number = number.multiply(new BigInteger((new Long(i)).toString()));
 		}
 		String product = number.toString();
 		long sum = 0;

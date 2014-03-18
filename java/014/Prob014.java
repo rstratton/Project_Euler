@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.math.BigInteger;
 
-class ep014{	
+class Prob014 {	
 	public static void main(String[] args){
 		System.out.println(findLongestLength(1000000));
 	}

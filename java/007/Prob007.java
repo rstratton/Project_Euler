@@ -1,5 +1,5 @@
 import java.io.IOException;
-public class ep7{
+public class Prob007 {
 	static boolean isPrime(long num){
 		for(long i = 2; i < num/2 + 1; ++i){
 			if(num % i == 0)

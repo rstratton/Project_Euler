@@ -1,4 +1,4 @@
-public class ep021{
+public class Prob021 {
 	public static int[] SOPD = new int[10001];
 	public static boolean[] isAmicable = new boolean[10001];
 	public static long sum = 0l;

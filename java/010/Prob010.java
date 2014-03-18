@@ -1,4 +1,4 @@
-public class ep10{
+public class Prob010 {
 	
 	public static void main(String[] args){
 		int size = 2000000;
