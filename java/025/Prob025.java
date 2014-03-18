@@ -1,7 +1,7 @@
 import java.math.*;
 import java.lang.*;
 
-public class ep025{
+public class Prob025 {
 	static BigInteger prevTerm = new BigInteger("1");
 	static BigInteger curTerm = new BigInteger("1");
 	static BigInteger termNum = new BigInteger("2");
