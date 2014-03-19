@@ -1,0 +1,6 @@
+// Project Euler problem %s
+
+public class Prob%s {
+    public static void main(String[] args) {
+    }
+}
