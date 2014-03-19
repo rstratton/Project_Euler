@@ -1,0 +1,21 @@
+<project default="main">
+    <property name="main.class" value="Prob017"/>
+    <property name="src.dir" value="."/>
+    <property name="classes.dir" value="classes"/>
+
+    <target name="clean">
+        <delete dir="${classes.dir}"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${classes.dir}"/>
+        <javac includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}"/>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classpath="${classes.dir}" classname="${main.class}"/>
+    </target>
+
+    <target name="main" depends="clean,run"/>
+
+</project>
