@@ -1,7 +1,7 @@
 import java.lang.*;
 import java.math.*;
 
-class Prob012 {
+public class Prob012 {
 	public static final int MAX = 1000000;
 	public static int[] sieve = Erat.generateSieve(MAX);
 	
