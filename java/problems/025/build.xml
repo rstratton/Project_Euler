@@ -2,9 +2,11 @@
     <property name="main.class" value="Prob025"/>
     <property name="src.dir" value="."/>
     <property name="classes.dir" value="classes"/>
+    <property name="output.file" value="output.out"/>
 
     <target name="clean">
         <delete dir="${classes.dir}"/>
+        <delete file="${output.file}"/>
     </target>
 
     <target name="compile">
@@ -13,7 +15,7 @@
     </target>
 
     <target name="run" depends="compile">
-        <java classpath="${classes.dir}" classname="${main.class}"/>
+        <java classpath="${classes.dir}" classname="${main.class}" output="${output.file}"/>
     </target>
 
     <target name="main" depends="clean,run"/>
