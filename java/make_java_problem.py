@@ -50,8 +50,9 @@ def create_build_file(problem_num, overwrite=False):
             f.write(template % (problem_num))
 
 def create_problem_dir(problem_num):
-    if not os.path.exists(problem_num):
-        os.mkdir(problem_num)
+    problem_dir = "problems/" + problem_num
+    if not os.path.exists(problem_dir):
+        os.mkdir(problem_dir)
 
 if __name__ == "__main__":
 
