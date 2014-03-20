@@ -34,7 +34,7 @@ def validate_args(args):
             sys.exit(1)
 
 def create_code_stub(problem_num, overwrite=False):
-    filename = "{0}/Prob{0}.java".format(problem_num)
+    filename = "problems/{0}/Prob{0}.java".format(problem_num)
     if overwrite or not os.path.exists(filename):
         with open(JAVA_TEMPLATE_NAME) as f:
             template = f.read()
@@ -42,7 +42,7 @@ def create_code_stub(problem_num, overwrite=False):
             f.write(template % (problem_num, problem_num))
 
 def create_build_file(problem_num, overwrite=False):
-    filename = "{0}/build.xml".format(problem_num)
+    filename = "problems/{0}/build.xml".format(problem_num)
     if overwrite or not os.path.exists(filename):
         with open(ANT_TEMPLATE_NAME) as f:
             template = f.read()
