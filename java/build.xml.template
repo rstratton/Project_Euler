@@ -2,6 +2,7 @@
     <property name="main.class" value="Prob%s"/>
     <property name="src.dir" value="."/>
     <property name="classes.dir" value="classes"/>
+    <property name="util.dir" value="../../util/classes"/>
     <property name="output.file" value="output.out"/>
 
     <target name="clean">
@@ -11,11 +12,11 @@
 
     <target name="compile">
         <mkdir dir="${classes.dir}"/>
-        <javac includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}"/>
+        <javac classpath="${classes.dir}:${util.dir}" includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}"/>
     </target>
 
     <target name="run" depends="compile">
-        <java classpath="${classes.dir}" classname="${main.class}" output="${output.file}"/>
+        <java classpath="${classes.dir}:${util.dir}" classname="${main.class}" output="${output.file}"/>
     </target>
 
     <target name="main" depends="clean,run"/>
