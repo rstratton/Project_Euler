@@ -19,6 +19,6 @@ public class Prob006 {
 	}
 	
 	public static void main(String[] args){
-		System.out.println(computeSumOfSquares() - computeSquareOfSum());
+        System.out.println(computeSquareOfSum() - computeSumOfSquares());
 	}	
 }
