@@ -30,10 +30,29 @@ def validate_args(args):
             print("Error: '{0}' is not an integer.".format(arg), file=sys.stderr)
             sys.exit(1)
 
-def build(problem_num):
+def build(problem_num, clean=True):
     print("{0}: Building...".format(problem_num), end="")
+    sys.stdout.flush()
     build_file = "problems/{0}/build.xml".format(problem_num)
-    build_exit_code = subprocess.call(["ant", "-q", "-f", build_file],
+    if clean:
+        subprocess.call(["ant", "-f", build_file, "clean"],
+                        stdout=DEV_NULL,
+                        stderr=DEV_NULL)
+    build_exit_code = subprocess.call(["ant", "-f", build_file, "compile"],
+                                      stdout=DEV_NULL,
+                                      stderr=DEV_NULL)
+    if build_exit_code == 0:
+        print("OK.")
+        return True
+    else:
+        print("FAILED.")
+        return False
+
+def run(problem_num):
+    print("     Running...".format(problem_num), end="")
+    sys.stdout.flush()
+    build_file = "problems/{0}/build.xml".format(problem_num)
+    build_exit_code = subprocess.call(["ant", "-f", build_file, "run"],
                                       stdout=DEV_NULL,
                                       stderr=DEV_NULL)
     if build_exit_code == 0:
@@ -45,6 +64,7 @@ def build(problem_num):
 
 def check_answer(problem_num):
     print("     Checking...", end="")
+    sys.stdout.flush()
     output_filename = "problems/{0}/output.out".format(problem_num)
     answer_filename = "../answers/{0}/answer".format(problem_num)
     for filename in (output_filename, answer_filename):
@@ -63,6 +83,6 @@ if __name__ == "__main__":
     validate_args(problems)
 
     for problem_num in problems:
-        if problem_assets_exist(problem_num) and build(problem_num):
+        if problem_assets_exist(problem_num) and build(problem_num) and run(problem_num):
             check_answer(problem_num)
         print("")
