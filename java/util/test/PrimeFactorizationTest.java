@@ -29,12 +29,6 @@ public class PrimeFactorizationTest {
     }
 
     // Naive but simple implementation to check correctness
-    private Map<Integer, Integer> primeFactors(int n) {
-        Map<Integer, Integer> multiplicities = new HashMap<Integer, Integer>();
-        return multiplicities;
-    }
-
-    // Naive but simple implementation to check correctness
     private int divisorCount(int n) {
         return divisors(n).size();
     }
