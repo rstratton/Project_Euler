@@ -1,15 +1,47 @@
 <project default="main">
-    <property name="main.class" value="PrimesSieve"/>
-    <property name="src.dir" value="."/>
+    <property name="src.dir" value="src"/>
     <property name="classes.dir" value="classes"/>
+    <property name="test.src.dir" value="test"/>
+    <property name="test.classes.dir" value="test/classes"/>
+    <property name="lib.dir" value="lib"/>
+
+    <path id="junit.classpath">
+        <fileset dir="${lib.dir}"/>
+    </path>
 
     <target name="clean">
         <delete dir="${classes.dir}"/>
+        <delete dir="${test.classes.dir}"/>
     </target>
 
     <target name="compile">
         <mkdir dir="${classes.dir}"/>
         <javac includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}"/>
+    </target>
+
+    <target name="compile-tests" depends="clean,compile">
+        <mkdir dir="${test.classes.dir}"/>
+        <javac includeantruntime="false" destdir="${test.classes.dir}" srcdir="${test.src.dir}">
+            <classpath>
+                <pathelement path="${classes.dir}"/>
+                <path refid="junit.classpath"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="test" depends="clean,compile,compile-tests">
+        <junit printsummary="yes" failureproperty="test.failed">
+            <formatter type="plain" usefile="false" />
+            <classpath>
+                <pathelement path="${classes.dir}"/>
+                <pathelement path="${test.classes.dir}"/>
+                <path refid="junit.classpath"/>
+            </classpath>
+            <batchtest fork="yes">
+                <fileset dir="${test.src.dir}" includes="*Test.java"/>
+            </batchtest>
+        </junit>
+        <fail message="Test failure detected, check test results." if="test.failed" />
     </target>
 
     <target name="main" depends="clean,compile"/>
