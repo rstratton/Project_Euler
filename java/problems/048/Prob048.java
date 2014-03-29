@@ -2,11 +2,16 @@ import java.math.*;
 import java.lang.*;
 
 public class Prob048 {
-	static BigInteger sum = new BigInteger("0");
 	public static void main(String[] args){
+        BigInteger sum = BigInteger.ZERO;
+
 		for(int i = 1; i < 1001; ++i){
-			sum = sum.add((new BigInteger((new Integer(i)).toString())).pow(i));
+            BigInteger summand = BigInteger.valueOf(i).pow(i);
+            sum = sum.add(summand);
 		}
-		System.out.println(sum.toString());
+
+        String fullSum = sum.toString();
+        int length = fullSum.length();
+		System.out.println(fullSum.substring(length - 10, length));
 	}
 }
