@@ -4,8 +4,14 @@ import java.lang.Math;
 public class PrimeFactorization {
     private int number;
     private Map<Integer, Integer> factorMultiplicities;
+
+    /*
+     * Keep a static prime sieve arround, pre-instantiated to
+     * "primeSieveLimit" so that repeated calls to "factorize" don't waste time
+     */
     private static int primeSieveLimit = 1000000;
     private static PrimeSieve sieve = new PrimeSieve(primeSieveLimit);
+    private static ArrayList<Integer> primes = sieve.getPrimes();
 
     public PrimeFactorization(int number) {
         this.number = number;
@@ -63,22 +69,22 @@ public class PrimeFactorization {
         return result;
     }
 
-    public static void setPrimeSieveLimit(int limit) {
-        sieve = new PrimeSieve(limit);
-    }
-
     /*
      * Given an integer, return a Map which maps the integer's prime factors to
      * those factors' multiplicities.
      */
     public static Map<Integer, Integer> factorize(int number) {
         Map<Integer, Integer> multiplicities = new HashMap<Integer, Integer>();
-        ArrayList<Integer> primes = sieve.getPrimes();
         int residual = number;
         for (Integer prime : primes) {
-            while (residual % prime == 0) {
-                residual /= prime;
-                incrementMultiplicity(prime, multiplicities);
+            if (sieve.isPrime(residual)) {
+                incrementMultiplicity(residual, multiplicities);
+                break;
+            } else {
+                while (residual % prime == 0) {
+                    residual /= prime;
+                    incrementMultiplicity(prime, multiplicities);
+                }
             }
         }
         return multiplicities;
@@ -96,5 +102,13 @@ public class PrimeFactorization {
         } else {
             multiplicities.put(number, 1);
         }
+    }
+
+    /*
+     * Regenerate the static sieve reference with a new limit
+     */
+    public static void setPrimeSieveLimit(int limit) {
+        sieve = new PrimeSieve(limit);
+        primes = sieve.getPrimes();
     }
 }
