@@ -9,13 +9,14 @@ JAVA_TEMPLATE_NAME = "Problem.java.template"
 ANT_TEMPLATE_NAME = "build.xml.template"
 
 def parse_cmd_line_args():
-    parser = OptionParser()
+    usage = "usage: ./%prog [options] problem_dir [...]"
+    parser = OptionParser(usage=usage)
     parser.add_option("-b", "--build", action="store_true", default=False,
-                      help="Generate a build file for the problem")
+                      help="generate a build file for the problem")
     parser.add_option("-c", "--code", action="store_true", default=False,
-                      help="Generate a code stub for the problem")
+                      help="generate a code stub for the problem")
     parser.add_option("-o", "--overwrite", action="store_true", default=False,
-                      help="Overwrite pre-existing build/code files")
+                      help="overwrite pre-existing build/code files")
     return parser.parse_args()
 
 def verify_template_existance():
@@ -26,6 +27,10 @@ def verify_template_existance():
             sys.exit(1)
 
 def validate_args(args):
+    if len(args) == 0:
+        print("Error: No problem directories supplied (see --help for usage).",
+              file=sys.stderr)
+        sys.exit(1)
     for arg in args:
         try:
             int(arg)

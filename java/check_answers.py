@@ -8,6 +8,13 @@ import subprocess
 
 DEV_NULL = open(os.devnull, 'w')
 
+def parse_cmd_line_args():
+    usage = "usage: ./%prog [options] [problem_dir ...]"
+    parser = OptionParser(usage=usage)
+    parser.add_option("-f", "--force-build", action="store_true", default=False,
+                      help="(re)build each problem")
+    return parser.parse_args()
+
 def problem_assets_exist(problem_num):
     problem_dir = "problems/" + problem_num
     build_file = problem_dir + "/build.xml"
@@ -30,7 +37,7 @@ def validate_args(args):
             print("Error: '{0}' is not an integer.".format(arg), file=sys.stderr)
             sys.exit(1)
 
-def build(problem_num, clean=True):
+def build(problem_num, clean=False):
     print("{0}: Building...".format(problem_num), end="")
     sys.stdout.flush()
     build_file = "problems/{0}/build.xml".format(problem_num)
@@ -49,7 +56,7 @@ def build(problem_num, clean=True):
         return False
 
 def run(problem_num):
-    print("     Running...".format(problem_num), end="")
+    print("     Running....".format(problem_num), end="")
     sys.stdout.flush()
     build_file = "problems/{0}/build.xml".format(problem_num)
     build_exit_code = subprocess.call(["ant", "-f", build_file, "run"],
@@ -79,10 +86,12 @@ def check_answer(problem_num):
 
 
 if __name__ == "__main__":
-    problems = sys.argv[1:] or os.listdir("./problems")
+    options, args = parse_cmd_line_args()
+    problems = args or os.listdir("./problems")
     validate_args(problems)
 
-    for problem_num in problems:
-        if problem_assets_exist(problem_num) and build(problem_num) and run(problem_num):
-            check_answer(problem_num)
+    for prob in problems:
+        if problem_assets_exist(prob) and \
+                build(prob, clean=options.force_build) and run(prob):
+            check_answer(prob)
         print("")
