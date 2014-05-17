@@ -2,21 +2,26 @@
     <property name="main.class" value="Prob010"/>
     <property name="src.dir" value="."/>
     <property name="classes.dir" value="classes"/>
-    <property name="util.dir" value="../../util/classes"/>
+    <property name="util.base.dir" value="../../util"/>
+    <property name="util.classes.dir" value="${util.base.dir}/classes"/>
     <property name="output.file" value="output.out"/>
+
+    <target name="compile-util">
+        <ant inheritAll="false" dir="${util.base.dir}" target="compile"/>
+    </target>
 
     <target name="clean">
         <delete dir="${classes.dir}"/>
         <delete file="${output.file}"/>
     </target>
 
-    <target name="compile">
+    <target name="compile" depends="compile-util">
         <mkdir dir="${classes.dir}"/>
-        <javac classpath="${classes.dir}:${util.dir}" includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}"/>
+        <javac classpath="${classes.dir}:${util.classes.dir}" includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}"/>
     </target>
 
     <target name="run" depends="compile">
-        <java classpath="${classes.dir}:${util.dir}" classname="${main.class}" output="${output.file}"/>
+        <java classpath="${classes.dir}:${util.classes.dir}" classname="${main.class}" output="${output.file}"/>
     </target>
 
     <target name="main" depends="clean,run"/>
