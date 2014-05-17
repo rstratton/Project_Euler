@@ -24,5 +24,8 @@ def solution2():
             total += n
     return total
 
-print(solution1())
-print(solution2())
+def main():
+    print(solution1())
+
+if __name__ == "__main__":
+    main()
